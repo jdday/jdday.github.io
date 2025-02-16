@@ -9,19 +9,19 @@ experience:
     {
       start: '2024-10-01',
       end: 'present',
-      title: 'Engineering Lead - Senior Associate',
+      title: 'Engineering Lead',
       company: 'JPMorgan Chase',
       responsibilities:
         [
-          'Leading feature development and team integrations of the now firmwide architecture governance approval system.',
-          'Led a react migration of a legacy Angular application that has been operational for many years.',
-          'Empowered other members of the team by mentoring junior engineeers, leading agile ceremonies ',
+          'Leading feature development and system integrations of the now firmwide architecture governance approval system.',
+          'Led development of a react migration of a legacy Angular application that has been operational for many years.',
+          'Empowered other members of the team by mentoring junior engineeers, leading agile ceremonies.',
         ],
     },
     {
       start: '2024-02-01',
       end: '2024-10-01',
-      title: 'Full Stack Developer - Senior Associate',
+      title: 'Full Stack Developer',
       company: 'JPMorgan Chase',
       responsibilities:
         [
@@ -32,7 +32,7 @@ experience:
     {
       start: '2023-02-01',
       end: '2024-02-01',
-      title: 'Full Stack Developer - Junior Associate',
+      title: 'Junior Associate',
       company: 'JPMorgan Chase',
       responsibilities:
         [
@@ -51,11 +51,17 @@ experience:
     },
   ]
 education: []
+
 skills:
   [
-    { category: 'Python', items: ['SQLAlchemy', 'FastAPI', 'Flask', 'Django'] },
-    { category: 'Node', items: ['Fastify', 'Express'] },
-    { category: 'UI Development', items: ['React (Typescript)', 'Angular', 'Astro', 'Orval', Next.js] },
+    {
+      category: 'Language/Framework',
+      items: ['SQLAlchemy', 'FastAPI', 'Flask', 'Django', 'Fastify', 'Express', 'SQL'],
+    },
+    {
+      category: 'UI Development',
+      items: ['React (Typescript)', 'Angular', 'Astro', 'Orval', 'tailwindcss', 'reactflow', 'Next.js'],
+    },
     { category: 'Testing', items: ['pytest', 'vitest', 'playwright'] },
     { category: 'Cloud', items: ['AWS', 'CloudFoundry'] },
     {

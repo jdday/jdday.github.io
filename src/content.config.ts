@@ -24,7 +24,6 @@ const cv = defineCollection({
         start: z.string(),
         end: z.string(),
         responsibilities: z.array(z.string()).optional(),
-        
       })
     ),
     skills: z.array(

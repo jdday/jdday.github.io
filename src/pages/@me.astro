@@ -12,7 +12,7 @@ const { name, title, intro, skills, email, experience } = cv.data;
 ---
 
 <Layout>
-  <div class="prose flex flex-col gap-4 container mx-auto">
+  <div class="prose prose-sm flex flex-col gap-4 container mx-auto">
     <div>
       <div class="flex items-center justify-between">
         <small class="">{title}</small>
@@ -28,31 +28,29 @@ const { name, title, intro, skills, email, experience } = cv.data;
       </p>
       <div>
         <h4>Experience - JPMorgan Chase</h4>
-        <div>
-          <div class="flex gap-x-3 text-xs flex-wrap">
-            {
-              experience.map((exp) => (
-                <div class="w-full h-fit">
-                  <div class="flex justify-between align-baseline">
-                    <div class="">
-                      <p class="mt-0 mb-0.5">
-                        {exp.title} <span class="font-normal text-neutral-500" />
-                      </p>
-                    </div>
-                    <span class="font-semibold">
-                      ({exp.start} - {exp.end})
-                    </span>
+        <div class="flex gap-x-3 gap-y-3 text-xs flex-wrap">
+          {
+            experience.map((exp) => (
+              <div class="w-full h-fit">
+                <div class="flex flex-wrap justify-between align-baseline">
+                  <div class="">
+                    <p class="mt-0 mb-0.5">
+                      {exp.title} <span class="font-normal text-neutral-500" />
+                    </p>
                   </div>
-                  <ul class="">
-                    {exp.responsibilities?.map((responsibility) => (
-                      <li>{responsibility}</li>
-                    ))}
-                  </ul>
-                  {/* <div class="text-sm">{exp.description}</div> */}
+                  <span class="font-semibold ml-auto">
+                    <span class="whitespace-nowrap">{exp.start}</span> -{' '}
+                    <span class="whitespace-nowrap">{exp.end}</span>
+                  </span>
                 </div>
-              ))
-            }
-          </div>
+                <ul class="">
+                  {exp.responsibilities?.map((responsibility) => (
+                    <li>{responsibility}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
         </div>
       </div>
       <div>
