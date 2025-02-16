@@ -1,0 +1,73 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '~/layouts/Layout.astro';
+
+const cv = await getEntry('cv', 'cv');
+
+if (!cv) {
+  throw new Error('No CV found');
+}
+
+const { name, title, intro, skills, email, experience } = cv.data;
+---
+
+<Layout>
+  <div class="prose flex flex-col gap-4 container mx-auto">
+    <div>
+      <div class="flex items-center justify-between">
+        <small class="">{title}</small>
+        <small>
+          <a href={`mailto:${email}`}>{email}</a>
+        </small>
+      </div>
+      <h2 class="mt-1 mb-2">
+        {name}
+      </h2>
+      <p class="text-xs">
+        {intro}
+      </p>
+      <div>
+        <h4>Experience - JPMorgan Chase</h4>
+        <div>
+          <div class="flex gap-x-3 text-xs flex-wrap">
+            {
+              experience.map((exp) => (
+                <div class="w-full h-fit">
+                  <div class="flex justify-between align-baseline">
+                    <div class="">
+                      <p class="mt-0 mb-0.5">
+                        {exp.title} <span class="font-normal text-neutral-500" />
+                      </p>
+                    </div>
+                    <span class="font-semibold">
+                      ({exp.start} - {exp.end})
+                    </span>
+                  </div>
+                  <ul class="">
+                    {exp.responsibilities?.map((responsibility) => (
+                      <li>{responsibility}</li>
+                    ))}
+                  </ul>
+                  {/* <div class="text-sm">{exp.description}</div> */}
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4>Skills</h4>
+        <div class="flex gap-x-3 text-xs flex-wrap">
+          {
+            skills.map((skill) => (
+              <p class="mt-0 mb-1 w-full">
+                <span class="font-semibold">{skill.category}:</span>
+                {skill.items.join(' / ')}
+              </p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
