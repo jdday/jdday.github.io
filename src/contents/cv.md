@@ -83,7 +83,7 @@ skills:
     },
     {
       category: 'Soft Skills',
-      items: ['Presentations', 'Senior stakeholder management', 'High quality documentation'],
+      items: ['Presentations', 'Senior stakeholder management', 'Technical documentation writing', 'Mentoring juniors'],
     },
   ]
 ---
