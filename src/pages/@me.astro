@@ -8,11 +8,11 @@ if (!cv) {
   throw new Error('No CV found');
 }
 
-const { name, title, intro, skills, email, experience } = cv.data;
+const { name, title, intro, skills, email, experience, education } = cv.data;
 ---
 
 <Layout>
-  <div class="prose prose-sm flex flex-col gap-4 container mx-auto">
+  <div class="prose prose-sm flex flex-col gap-4 mx-auto">
     <div>
       <div class="flex items-center justify-between">
         <small class="">{title}</small>
@@ -27,16 +27,14 @@ const { name, title, intro, skills, email, experience } = cv.data;
         {intro}
       </p>
       <div>
-        <h4>Experience - JPMorgan Chase</h4>
-        <div class="flex gap-x-3 gap-y-3 text-xs flex-wrap">
+        <h4>Experience <span class="hidden md:inline-block">- JPMorgan Chase</span></h4>
+        <div class="flex gap-x-3 text-xs flex-wrap">
           {
             experience.map((exp) => (
               <div class="w-full h-fit">
                 <div class="flex flex-wrap justify-between align-baseline">
                   <div class="">
-                    <p class="mt-0 mb-0.5">
-                      {exp.title} <span class="font-normal text-neutral-500" />
-                    </p>
+                    <p class="mt-0 mb-0.5 font-semibold">{exp.title}</p>
                   </div>
                   <span class="font-semibold ml-auto">
                     <span class="whitespace-nowrap">{exp.start}</span> -{' '}
@@ -54,16 +52,37 @@ const { name, title, intro, skills, email, experience } = cv.data;
         </div>
       </div>
       <div>
-        <h4>Skills</h4>
-        <div class="flex gap-x-3 text-xs flex-wrap">
+        <h4>Education</h4>
+        <div>
           {
-            skills.map((skill) => (
-              <p class="mt-0 mb-1 w-full">
-                <span class="font-semibold">{skill.category}:</span>
-                {skill.items.join(' / ')}
-              </p>
-            ))
+            education.map((education) => {
+              return (
+                <div class="text-xs">
+                  <p class="flex justify-between">
+                    <span class="font-semibold">{education.institution}</span>
+                    <span class="font-semibold">
+                      {education.start} - {education.end}
+                    </span>
+                  </p>
+
+                  <span>{education.title}</span>
+                </div>
+              );
+            })
           }
+        </div>
+        <div>
+          <h4>Skills</h4>
+          <div class="flex gap-x-3 text-xs flex-wrap">
+            {
+              skills.map((skill) => (
+                <p class="mt-0 mb-1 w-full">
+                  <span class="font-semibold">{skill.category}:</span>
+                  {skill.items.join(' / ')}
+                </p>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>

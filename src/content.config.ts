@@ -15,6 +15,7 @@ const cv = defineCollection({
         start: z.string(),
         end: z.string(),
         institution: z.string(),
+        grade: z.string(),
       })
     ),
     experience: z.array(
