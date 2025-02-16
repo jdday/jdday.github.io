@@ -3,5 +3,5 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --default-font-family: "Roboto Mono Variable", monospace;
+  --default-font-family: helvetica, monospace;
 }

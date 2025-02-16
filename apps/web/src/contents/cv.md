@@ -25,7 +25,7 @@ experience:
       company: 'JPMorgan Chase',
       responsibilities:
         [
-          'Leading a multi-cloud migration POC and presented findings to senior managers with a high-focus on proposed cost changes and predictions.',
+          'Leading a multi-cloud migration POC',
           'Created multiple training sessions covering python/react/aws and terraform for multiple teams internally.',
         ],
     },
