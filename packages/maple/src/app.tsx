@@ -1,21 +1,8 @@
-import { EditorState } from 'prosemirror-state';
+import { ProseMirror, ProseMirrorDoc, reactKeys } from '@handlewithcare/react-prosemirror';
 import { schema } from 'prosemirror-schema-basic';
-import { NodeViewComponentProps, ProseMirror, ProseMirrorDoc, reactKeys } from '@handlewithcare/react-prosemirror';
-import { forwardRef } from 'react';
+import { EditorState, Plugin, Transaction } from 'prosemirror-state';
+import React from 'react';
 import './app.css';
-
-const ParagraphNode = forwardRef<HTMLParagraphElement, NodeViewComponentProps>(
-  ({ children, nodeProps, ...props }, ref) => {
-    console.log(nodeProps, props);
-    return (
-      <p
-        ref={ref}
-        {...props}>
-        {children}
-      </p>
-    );
-  }
-);
 
 function ProseMirrorWrapper({ children }: { children: React.ReactNode }) {
   return (
@@ -26,21 +13,38 @@ function ProseMirrorWrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
+
+
+const trackTransactionPlugin = new Plugin({
+  state: {
+    init: (config, instance) => {
+      // console.log(config, instance);
+      console.log(JSON.stringify(instance.doc))
+      return { transactions: [] as Transaction[] };
+    },
+    apply: (transaction, trackedChanges, oldState, newState) => {
+      // called when a new local transaction is applied
+      // likely this is where we need to apply some reconciliation logic with remote state
+      console.log('apply', transaction);
+
+      console.log(newState.doc.toJSON())
+
+      
+      return { transactions: [...trackedChanges.transactions, transaction] };
+    },
+  },
+});
+
 function App() {
-  const [state, setState] = React.useState(EditorState.create({ schema, plugins: [reactKeys()] }));
+  const [state, setState] = React.useState(EditorState.create({ schema, plugins: [reactKeys(), trackTransactionPlugin] }));
+
   
-  console.log(state)
-  
+
   return (
     <div className="p-10">
-      <ProseMirror
-      
-        className=""
-        defaultState={state}
-        
-        nodeViews={{ paragraph: ParagraphNode }}>
+      <ProseMirror defaultState={state}>
         <ProseMirrorWrapper>
-          <ProseMirrorDoc  />
+          <ProseMirrorDoc />
         </ProseMirrorWrapper>
       </ProseMirror>
     </div>
